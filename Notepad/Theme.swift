@@ -75,19 +75,29 @@ public struct Theme {
         if var allStyles = data["styles"] as? [String: AnyObject] {
             if let bodyStyles = allStyles["body"] as? [String: AnyObject] {
                 if var parsedBodyStyles = parse(bodyStyles) {
+                    #if os(iOS)
                     if #available(iOS 13.0, *) {
                         if parsedBodyStyles[NSAttributedString.Key.foregroundColor] == nil {
                             parsedBodyStyles[NSAttributedString.Key.foregroundColor] = UniversalColor.label
                         }
                     }
+                    #elseif os(macOS)
+                    if parsedBodyStyles[NSAttributedString.Key.foregroundColor] == nil {
+                        parsedBodyStyles[NSAttributedString.Key.foregroundColor] = UniversalColor.labelColor
+                    }
+                    #endif
                     body = Style(element: .body, attributes: parsedBodyStyles)
                 }
             }
             else { // Create a default body font so other styles can inherit from it.
                 var textColor = UniversalColor.black
+                #if os(iOS)
                 if #available(iOS 13.0, *) {
                     textColor = UniversalColor.label
                 }
+                #elseif os(macOS)
+                textColor = UniversalColor.labelColor
+                #endif
                 let attributes = [NSAttributedString.Key.foregroundColor: textColor]
                 body = Style(element: .body, attributes: attributes)
             }
