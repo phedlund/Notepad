@@ -93,6 +93,22 @@ extension UniversalFont {
         return UniversalFont(descriptor: descriptor, size: size)
     }
     
+    #if os(iOS)
+    @available(iOS 13.0, *)
+    convenience init?(
+        style: UniversalFont.TextStyle,
+        weight: UniversalFont.Weight = .regular,
+        design: UniversalFontDescriptor.SystemDesign = .default) {
+        
+        guard let descriptor = UniversalFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+            .addingAttributes([UniversalFontDescriptor.AttributeName.traits: [UniversalFontDescriptor.TraitKey.weight: weight]])
+            .withDesign(design) else {
+                return nil
+        }
+        self.init(descriptor: descriptor, size: 0)
+    }
+    #endif
+
     private func getTraits(from traits: String) -> UniversalTraits? {
         #if os(iOS)
         switch traits {

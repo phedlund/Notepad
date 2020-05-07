@@ -175,15 +175,23 @@ public struct Theme {
         let fontTraits = attributes["traits"] as? String ?? ""
         var font: UniversalFont?
         
-        if let fontName = attributes["font"] as? String, fontName != "System" {
+        if let fontName = attributes["font"] as? String, fontName != "System", !fontName.hasPrefix(".") {
             // use custom font if set
             font = UniversalFont(name: fontName, size: fontSize)?.with(traits: fontTraits, size: fontSize)
-        } else if let bodyFont = bodyFont, bodyFont.fontName != "System" {
+        } else if let bodyFont = bodyFont, bodyFont.fontName != "System", !bodyFont.fontName.hasPrefix(".") {
             // use body font if set
             font = UniversalFont(name: bodyFont.fontName, size: fontSize)?.with(traits: fontTraits, size: fontSize)
         } else {
+            #if os(iOS)
+            if #available(iOS 13.0, *) {
+                font = UniversalFont(style: .body, weight: .regular)
+            } else {
+                font = UniversalFont.systemFont(ofSize: fontSize).with(traits: fontTraits, size: fontSize)
+            }
+            #else
             // use system font in all other cases
             font = UniversalFont.systemFont(ofSize: fontSize).with(traits: fontTraits, size: fontSize)
+            #endif
         }
 
         stringAttributes[NSAttributedString.Key.font] = font
