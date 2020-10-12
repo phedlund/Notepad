@@ -80,7 +80,7 @@ public struct Theme {
         }
     }
     
-    public init(themePath: String) {
+    public init(themePath: URL) {
         if let data = convertFile(themePath) {
             configure(data)
         }
