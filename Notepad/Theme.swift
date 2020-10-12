@@ -50,21 +50,21 @@ public struct Theme {
     public init(_ name: String) {
 //        let bundle = Bundle(for: Notepad.self)
         
-        let path: String
+        let path: URL
         
-        if let path1 = Bundle.module.url(forResource: "Notepad/themes/\(name)", withExtension: "json")?.absoluteString {
+        if let path1 = Bundle.module.url(forResource: "Notepad/themes/\(name)", withExtension: "json") {
             
             path = path1
         }
-        else if let path2 = Bundle.module.url(forResource: "Notepad/\(name)", withExtension: "json")?.absoluteString {
+        else if let path2 = Bundle.module.url(forResource: "Notepad/\(name)", withExtension: "json") {
             
             path = path2
         }
-        else if let path3 = Bundle.module.url(forResource: "themes/\(name)", withExtension: "json")?.absoluteString {
+        else if let path3 = Bundle.module.url(forResource: "themes/\(name)", withExtension: "json") {
 
             path = path3
         }
-        else if let path4 = Bundle.module.url(forResource: name, withExtension: "json")?.absoluteString {
+        else if let path4 = Bundle.module.url(forResource: name, withExtension: "json") {
             
             path = path4
         }
@@ -203,9 +203,9 @@ public struct Theme {
     /// - parameter path: The path to the JSON file.
     ///
     /// - returns: The new dictionary.
-    func convertFile(_ path: String) -> [String: AnyObject]? {
+    func convertFile(_ path: URL) -> [String: AnyObject]? {
         do {
-            let json = try String(contentsOf: URL(fileURLWithPath: path), encoding: .utf8)
+            let json = try String(contentsOf: path, encoding: .utf8)
             if let data = json.data(using: .utf8) {
                 do {
                     return try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
