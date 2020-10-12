@@ -21,16 +21,7 @@ let package = Package(
                 "Info.plist",
             ],
             resources: [
-                .process("themes/base16-tomorrow-dark.json"),
-                .process("themes/base16-tomorrow-light.json"),
-                .process("themes/blues-clues.json"),
-                .process("themes/one-dark-custom.json"),
-                .process("themes/one-dark.json"),
-                .process("themes/one-light-custom.json"),
-                .process("themes/one-light.json"),
-                .process("themes/solarized-dark.json"),
-                .process("themes/solarized-light.json"),
-                .process("themes/system-minimal.json")
+                .copy("themes")
             ]
         ),
     ],
