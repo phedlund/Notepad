@@ -48,23 +48,23 @@ public struct Theme {
     ///
     /// - returns: The Theme.
     public init(_ name: String) {
-        let bundle = Bundle(for: Notepad.self)
+//        let bundle = Bundle(for: Notepad.self)
         
         let path: String
         
-        if let path1 = bundle.path(forResource: "Notepad.framework/themes/\(name)", ofType: "json") {
+        if let path1 = Bundle.module.url(forResource: "Notepad/themes/\(name)", withExtension: "json")?.absoluteString {
             
             path = path1
         }
-        else if let path2 = bundle.path(forResource: "Notepad.framework/\(name)", ofType: "json") {
+        else if let path2 = Bundle.module.url(forResource: "Notepad/\(name)", withExtension: "json")?.absoluteString {
             
             path = path2
         }
-        else if let path3 = bundle.path(forResource: "themes/\(name)", ofType: "json") {
+        else if let path3 = Bundle.module.url(forResource: "themes/\(name)", withExtension: "json")?.absoluteString {
 
             path = path3
         }
-        else if let path4 = bundle.path(forResource: name, ofType: "json") {
+        else if let path4 = Bundle.module.url(forResource: name, withExtension: "json")?.absoluteString {
             
             path = path4
         }
