@@ -107,6 +107,7 @@
 		504B70171F21D7CB002F9D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		504B70241F21D906002F9D8E /* Notepad-macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notepad-macOS.swift"; sourceTree = "<group>"; };
 		504B70271F21D9A5002F9D8E /* UniversalTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalTypes.swift; sourceTree = "<group>"; };
+		D0CAFECD2533E38700C47FA0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		F1730EB41DAEA6BE00E2BB0B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1730EB71DAEA6BE00E2BB0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1730EBC1DAEA6BE00E2BB0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		F1730EAB1DAEA6BE00E2BB0B = {
 			isa = PBXGroup;
 			children = (
+				D0CAFECD2533E38700C47FA0 /* Package.swift */,
 				F1730EB61DAEA6BE00E2BB0B /* Example */,
 				F1ABABEA1DDE923E00E11B6B /* Notepad */,
 				504B70151F21D7CB002F9D8E /* NotepadOSX */,
